@@ -1,1 +1,0 @@
-2025-10-25 20:44:57	2m 28s	extravagant_varahamihira	OK	aa3949195216252018e4462d58569887	ee9af7a7-97a4-42d4-8aae-3182aeed0dd9	nextflow pipeline.nf --o 'Arothron carduus' --t genus --docker 'ynotbs/nextflow:latest'
