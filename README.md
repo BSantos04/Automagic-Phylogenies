@@ -18,7 +18,7 @@ In order to proceed with the pipeline, the following tools were used:
 - Nextflow v24.10.4
 
 ## Usage
-Before running the pipeline, don´t forgot to give give yourself permission to use Docker.
+Before running the pipeline, don't forgot to give give yourself permission to use Docker.
 
 Try this:
 ```
@@ -33,7 +33,7 @@ In order to create one try this:
 docker build -t {image name} .
 ```
 
-If it´s not working, login into Docker and pull my image:
+If it's not working, login into Docker and pull my image:
 ```
 # Login into Docker
 docker login -u
