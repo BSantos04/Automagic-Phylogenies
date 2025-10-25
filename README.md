@@ -16,7 +16,7 @@ In order to proceed with the pipeline, the following tools were used:
 ## Requirements
 - Docker v28.0.1
 - Nextflow v24.10.4
-
+- OpenJDK v21.0.8
 ## Usage
 Before running the pipeline, don't forgot to give give yourself permission to use Docker.
 
