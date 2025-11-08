@@ -1,4 +1,4 @@
-# Use Nextflow as base image
+# Use Snakemake as base image
 FROM snakemake/snakemake:v7.32.4
 
 # Install requirements via mamba
@@ -13,7 +13,7 @@ RUN pip install biopython==1.85
 RUN pip install toytree==3.0.10
 RUN pip install toyplot==1.0.3
 
-# Create /app directory
+# Create /auto-phylo directory
 WORKDIR /auto-phylo
 COPY Python /auto-phylo/Python/
 COPY pipeline.nf /auto-phylo/pipeline.nf
