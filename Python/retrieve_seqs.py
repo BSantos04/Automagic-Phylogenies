@@ -24,8 +24,8 @@ def get_org_id(org_name):
         record = Entrez.read(handle)
         handle.close()
         return record["IdList"][0]
-    except:
-        raise Exception
+    except Exception as e:
+        print(f"An error occurred while searching for {org_name}: {e}")
 
 def get_taxon_id(org_id, taxon):
     """
@@ -62,8 +62,9 @@ def get_taxon_id(org_id, taxon):
         
         print(f"Taxonomic level '{taxon}' not found in lineage.")
         return None
-    except:
-        raise Exception
+    except Exception as e:
+        print(f"An error occurred while searching for {taxon}: {e}")
+        sys.exit(1)
 
 def get_genes_list(txid):
     """
@@ -96,7 +97,8 @@ def get_genes_list(txid):
         
         # If no genes were found, exit the program
         if not gene_ids:
-            raise Exception(f"No genes found for taxonomic ID {txid}.")
+            print(f"No genes found for taxonomic ID {txid}.")
+            sys.exit(1)
         
         # Fetch the information of every gene ID
         print(f"Total genes found: {len(gene_ids)}")
@@ -113,8 +115,8 @@ def get_genes_list(txid):
                     gene_name = gene["Entrezgene_gene"]["Gene-ref"]["Gene-ref_locus"]
                     gene_dict[gene_id] = gene_name
             # Give informtion about gene data that couldn't be parsed
-            except:
-                raise KeyError
+            except KeyError as e:
+                print(f"Error parsing gene data: {e}")
         
         print(f"Processed {len(gene_dict)} genes for taxonomic ID {txid}.")
 
@@ -122,8 +124,9 @@ def get_genes_list(txid):
         return gene_dict
     
     # If an error occurs during the process, exit the program
-    except:
-        raise Exception
+    except Exception as e:
+        print(f"An error occurred while fetching genes for taxID {txid}: {e}")
+        sys.exit(1)
 
 def download_seqs(gene_dict, gene_sequences):
     """
@@ -185,9 +188,10 @@ def download_seqs(gene_dict, gene_sequences):
 
         print("Download complete!")
     
-    except:
+    except Exception as e:
         # If any error occurs during the downloading process, exit the program
-        raise Exception
+        print(f"Error downloading the sequences: {e}")
+        sys.exit(1)
 
 
 def save_sequences(gene_sequences):
@@ -209,9 +213,10 @@ def save_sequences(gene_sequences):
                 SeqIO.write(records, outfile, "fasta")
                 print(f"{gene_name}.fasta saved with {len(records)} sequences!")
     
-    except:
+    except Exception as e:
         # If an error occurs while saving the sequences, exit the program
-        raise Exception
+        print(f"Error saving sequences: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     # Define input arguments
